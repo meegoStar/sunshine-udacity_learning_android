@@ -17,6 +17,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    buildTypes.each {
+        // MyOpenWeatherMapApiKey is defined in ~/.gradle/gradle.properties file instead of the
+        // gradle.properties file of this Android project, since it's a credential info which should
+        // not be committed to Github
+        it.buildConfigField 'String', 'OPEN_WEATHER_MAP_API_KEY', MyOpenWeatherMapApiKey
+    }
 }
 
 dependencies {
